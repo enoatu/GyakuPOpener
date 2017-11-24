@@ -1,0 +1,13 @@
+h1{
+    text-align: center;
+}
+#in{
+ font-size: 2em;
+}
+@media screen and (min-width:1024px){
+/*パソコン用*/
+h1{
+    font-size: 3em;
+}
+
+}
