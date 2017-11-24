@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width,
+     initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta charset="UTF-8">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <title>逆ポーランドオープナー</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,22 +18,22 @@
 <div align="center" id="wrap">
 
     <div id="in">
-    <input type="text" autofocus placeholder="例 10 20 30 *+=">
+    <input type="text" id="input" autofocus placeholder="例 10 20 30 *+=">
     </div>
-    <button id="button">Open</button>
+    <button id="button" onclick=c();>Open</button>
 
     <div id="stack_box">
         <div id="stack">
-            <div>
+            <div name="stack[0]">
                 a
             </div>
-            <div>
+            <div name="stack[1]">
                 b
-            </div>
-            <div>
+            </div >
+            <div name="stack[2]">
                 c
             </div>
-            <div>
+            <div name="stack[3]">
                 d
             </div>
         </div>
@@ -40,3 +42,5 @@
 </div>
 </body>
 </html>
+
+<script src="js.js"></script>
