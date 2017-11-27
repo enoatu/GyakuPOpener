@@ -1,3 +1,5 @@
+var input = $("#input").val();
+
 
 function c() {
 
@@ -6,8 +8,7 @@ function c() {
 
 //10 20 30 *+=
     var in_arr = input.split(" ");
-    alert(in_arr);
-    console.log(in_arr);
+ 
 //{10 20 30 *+=}
     var stack = [];
     for (var i = 0; i < in_arr.length; i++) {
@@ -48,6 +49,10 @@ function anima() {
    pointer = a;
 
 
+}
+
+function addstack() {
+    
 }
 
 
