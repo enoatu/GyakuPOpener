@@ -1,41 +1,100 @@
 var input;
 var in_arr;
+var disp_arr;
 var pointer = 0;
+var divp=0;
 var sI;
-$("#button").click(
+
+$("#button").on('click',
     function () {
+$(function () {
+
+
         input = $("#input").val();
         input="10 20 30 * + =";
         in_arr= input.split(" ");
-        if(count<=in_arr.length) {
-            sI = setInterval(anim, 1000);
+        disp_arr=input.split(" ");
+        for(var i=0;i<searchNumNum(in_arr);i++){
+        $('#stack').append("<div><br></div>");
         }
+
+            if(count<=in_arr.length) {
+                sI = setInterval(anim, 1000);
+            }
+
+
+});
     }
 
 );
 
-var count=-1;
-function anim() {
-    if(count===-1){
 
-        $("#out_stack").html(input);
-    }else{
-        var em= $("#stack").find("div");　　//NonjqueryObject
-        $(em[0]).html(in_arr[0]);//output in stack
+function searchNumNum(arr) {
+    var numcount=0;
 
-        in_arr.shift();
-        var move_in_arr=in_arr;
-        $("#out_stack").html(Earr.join(' '));
-        //output in stackout
-
-        in_arr=move_in_arr;
+    for(var i=0;i<arr.length;i++) {
+        if(isNaN(arr[i])) {
+          numcount++;
+        }
     }
 
-   count++;
-
-
+    return numcount
 }
 
+var count=null;
+var thisisnum=false;
+var em = $("#stack").find("div");　　//NonjqueryObject
+
+function anim() {
+    $(function () {
+
+
+    if(count===null){
+        $("#out_stack").html(input);//first disp
+        count=0;
+    }else if(thisisnum===false) {
+
+        $(em[divp]).html(in_arr[divp]);//output in stack
+
+        disp_arr.shift();
+        $("#out_stack").html(disp_arr.join(' '));
+        //output in stackout
+console.log(in_arr);
+console.log (disp_arr);
+
+        switch (in_arr[divp+1]) {//pre know
+            case "+":
+                break;
+            case "-":
+                break;
+            case "*":
+                break;
+            case "/":
+                break;
+            case "=":
+                break;
+            default:
+                thisisnum=true;
+                break;
+
+        }
+
+        count++;
+
+    }else {
+        $(em[divp]).html(in_arr[pointer+1]);
+        $(em[divp+1]).html(in_arr[pointer]);
+        thisisnum=false;
+        divp++;
+        pointer++;
+    }
+
+    });
+}
+
+function thisisnumber(num) {
+
+}
 
 
 function c() {
@@ -80,16 +139,6 @@ function c() {
         }
     }
 
-
-}
-
-function anima() {
-   pointer = a;
-
-
-}
-
-function addstack() {
 
 }
 
