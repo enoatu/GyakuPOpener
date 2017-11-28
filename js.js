@@ -18,11 +18,11 @@ $("#button").on('click',
         $('#stack').append("<div><br></div>");
         }
 
-        setTimeout(function () {
+
             if(count<=in_arr.length) {
-                sI = setInterval(anim, 1000);
+                sI = setInterval(anim, 2000);
             }
-        },1000);
+
 
 
 
@@ -42,7 +42,7 @@ function searchNumNum(arr) {
 
     return numcount
 }
-
+var in_num;
 var count=null;
 var thisisnum=false;
 var em;　//NonjqueryObject
@@ -51,10 +51,14 @@ function anim() {
     $(function () {
 
         em= $('#stack').find('div');
-        if(count===null){
-        $("#out_stack").html(input);//first disp
+        console.log("thisisnum:"+thisisnum);
+    if(count===null){//first disp
+
+        $("#out_stack").html(input);
         count=0;
     }else if(thisisnum===false) {
+        console.log("second:");
+
 
         $(em[divp]).html(in_arr[divp]);//output in stack
 
@@ -80,13 +84,17 @@ console.log (disp_arr);
                 break;
 
         }
-
         count++;
 
-    }else {
-        $(em[divp]).html(in_arr[pointer+1]);
-        $(em[divp+1]).html(in_arr[pointer]);
-        thisisnum=false;
+    }else {//all move
+        console.log("third");
+
+        disp_arr.shift();
+        $("#out_stack").html(disp_arr.join(' '));
+        for(var j=0;j<in_num;j++) {
+            $(em[in_num-divp-j]).html(in_arr[pointer + 1+j]);
+        }
+        // thisisnum=false;
         divp++;
         pointer++;
     }
@@ -94,9 +102,6 @@ console.log (disp_arr);
     });
 }
 
-function thisisnumber(num) {
-
-}
 
 
 function c() {
