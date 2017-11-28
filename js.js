@@ -1,112 +1,132 @@
 var input;
-var in_arr;
-var disp_arr;
-var pointer = 0;
+var out_arr;
+var stack_arr=[];
 var divp=0;
 var sI;
 
 $("#button").on('click',
     function () {
-
-
-
         input = $("#input").val();
         input="10 20 30 * + =";
-        in_arr= input.split(" ");
-        disp_arr=input.split(" ");
-        for(var i=0;i<searchNumNum(in_arr);i++){
+        out_arr= input.split(" ");
+        for(var i=0;i<searchNumNum(out_arr);i++){
         $('#stack').append("<div><br></div>");
         }
 
-
-            if(count<=in_arr.length) {
-                sI = setInterval(anim, 2000);
-            }
-
-
-
-
-    }
-
-);
-
-
-function searchNumNum(arr) {
-    var numcount=0;
-
-    for(var i=0;i<arr.length;i++) {
-        if(isNaN(arr[i])) {
-          numcount++;
+        if(count<=out_arr.length) {
+            sI = setInterval(anim, 2000);
         }
     }
+    );
 
-    return numcount
-}
-var in_num;
+var in_num=0;
+var is_first=null;
 var count=null;
 var thisisnum=false;
-var em;　//NonjqueryObject
+var stack;　//NonjqueryObject
 
 function anim() {
-    $(function () {
 
-        em= $('#stack').find('div');
-        console.log("thisisnum:"+thisisnum);
-    if(count===null){//first disp
-
-        $("#out_stack").html(input);
-        count=0;
-    }else if(thisisnum===false) {
-        console.log("second:");
-
-
-        $(em[divp]).html(in_arr[divp]);//output in stack
-
-        disp_arr.shift();
-        $("#out_stack").html(disp_arr.join(' '));
-        //output in stackout
-console.log(in_arr);
-console.log (disp_arr);
-
-        switch (in_arr[divp+1]) {//pre know
-            case "+":
-                break;
-            case "-":
-                break;
-            case "*":
-                break;
-            case "/":
-                break;
-            case "=":
-                break;
-            default:
-                thisisnum=true;
-                break;
-
-        }
-        count++;
-
-    }else {//all move
-        console.log("third");
-
-        disp_arr.shift();
-        $("#out_stack").html(disp_arr.join(' '));
-        for(var j=0;j<in_num;j++) {
-            $(em[in_num-divp-j]).html(in_arr[pointer + 1+j]);
-        }
-        // thisisnum=false;
-        divp++;
-        pointer++;
+    if(is_first===null){
+        first();
+        is_first=0;
+    }else if(!isNaN(out_arr[0])) {
+        num(); //all move
+    }else {
+        text();
     }
 
-    });
 }
 
+function first() { console.log("first");
+
+    stack= $('#stack').find('div');
+
+    $("#out_stack").html(input);
+    thisisnum=true;
+
+}
+
+var pointer = 0;
+
+function num() {  console.log("num");
+
+arr_FirstElement_Move();
+    
+    in_num++;
+    //all move
+    outstack();
+
+    for(var j=0;j<stack_arr.length;j++) {
+        $(stack[stack_arr.length-j-1]).html(stack_arr[j]);
+    }
+    
+    // thisisnum=false;
+    divp++;
+    pointer++;
+}
+
+
+function text() {console.log("text");
+
+
+    $(stack[divp]).html(out_arr[divp]);//output in stack
+
+    stack_arr.shift();
+    $("#out_stack").html(stack_arr.join(' '));
+    //output in stackout
+    console.log(out_arr);
+    console.log (stack_arr);
+
+    switch (out_arr[divp+1]) {//pre know
+        case "+":
+            break;
+        case "-":
+            break;
+        case "*":
+            break;
+        case "/":
+            break;
+        case "=":
+            break;
+        default:
+            thisisnum=true;
+            break;
+
+    }
+    count++;
+
+}
+
+function outstack() {
+    $("#out_stack").html(out_arr.join(' '));
+    console.log("stack_arr : "+stack_arr);
+    console.log("out_arr : "+out_arr);
+
+}
+
+function arr_FirstElement_Move() {
+    stack_arr.push(out_arr[0]);
+    out_arr.shift();
+}
+
+
+    function searchNumNum(arr) {
+        var numcount=0;
+
+        for(var i=0;i<arr.length;i++) {
+            if(isNaN(arr[i])) {
+                numcount++;
+            }
+        }
+
+        return numcount
+    }
 
 
 function c() {
-    for (var i=0;i<in_arr.length;i++) {
-        $("#stack").find('div')[i].html(in_arr[i]);
+    for (var i=0;i<out_arr.length;i++) {
+        $("#stack").find('div')[i].html(out_arr[i]);
 
     }
     var input = $("#input").val();
@@ -115,8 +135,8 @@ function c() {
 
 //{10 20 30 *+=}
     var stack = [];
-    for (var i = 0; i < in_arr.length; i++) {
-        switch (in_arr[i]) {
+    for (var i = 0; i < out_arr.length; i++) {
+        switch (out_arr[i]) {
             case "+":
                 break;
             case "-":
@@ -126,7 +146,7 @@ function c() {
             case "/":
                 break;
             default:
-                se(in_arr[i], i);
+                se(out_arr[i], i);
                 break;
             anima();
 
