@@ -7,15 +7,20 @@ var sI;
 $("#button").on('click',
     function () {
         input = $("#input").val();
-        input="10 20 30 * + =";
+        input="10 200 30 * + =";
         out_arr= input.split(" ");
         for(var i=0;i<searchNumNum(out_arr);i++){
         $('#stack').append("<div><br></div>");
         }
-
-        if(count<=out_arr.length) {
-            sI = setInterval(anim, 2000);
+        for (var m=0;m<out_arr.length;m++){
+            if(!isNaN(out_arr[m])){
+            out_arr[m]=parseInt(out_arr[m]);}
         }
+
+      setTimeout(function () {
+          sI = setInterval(anim, 2000);
+      },2000);
+
     }
     );
 
@@ -70,30 +75,50 @@ arr_FirstElement_Move();
 function text() {console.log("text");
 
 
-    $(stack[divp]).html(out_arr[divp]);//output in stack
 
-    stack_arr.shift();
-    $("#out_stack").html(stack_arr.join(' '));
-    //output in stackout
-    console.log(out_arr);
-    console.log (stack_arr);
-
-    switch (out_arr[divp+1]) {//pre know
+    switch (out_arr[0]) {//pre know
         case "+":
+
+            stack_arr[stack_arr.length-1]+=
+                stack_arr[stack_arr.length-2];
+
+            $(stack[1]).html(
+                    stack_arr[stack_arr .length-1]);
+
+
             break;
         case "-":
+            stack_arr[stack_arr.length-1]-=
+                stack_arr[stack_arr.length-2];
             break;
         case "*":
+
+            stack_arr[stack_arr.length-1]*=
+                stack_arr[stack_arr.length-2];
+console.log()
+            $(stack[1]).html(
+                stack_arr[stack_arr .length-1]);
+
+            $(stack[0]).html(
+                stack_arr[stack_arr .length-1]);
+
+
             break;
         case "/":
+            stack_arr[stack_arr.length-1]/=
+                stack_arr[stack_arr.length-2];
+
             break;
         case "=":
+
             break;
         default:
-            thisisnum=true;
+            $("#out_stack").html("エラーです");
+            clearInterval(sI);
             break;
 
     }
+    out_arr.shift();
     count++;
 
 }
@@ -125,6 +150,18 @@ function arr_FirstElement_Move() {
 
 
 function c() {
+
+
+
+    $(stack[divp]).html(out_arr[divp]);//output in stack
+
+    stack_arr.shift();
+    $("#out_stack").html(stack_arr.join(' '));
+    //output in stackout
+    console.log(out_arr);
+    console.log (stack_arr);
+
+
     for (var i=0;i<out_arr.length;i++) {
         $("#stack").find('div')[i].html(out_arr[i]);
 
