@@ -7,7 +7,7 @@ var sI;
 
 $("#button").on('click',
     function () {
-$(function () {
+
 
 
         input = $("#input").val();
@@ -18,12 +18,14 @@ $(function () {
         $('#stack').append("<div><br></div>");
         }
 
+        setTimeout(function () {
             if(count<=in_arr.length) {
                 sI = setInterval(anim, 1000);
             }
+        },1000);
 
 
-});
+
     }
 
 );
@@ -43,13 +45,13 @@ function searchNumNum(arr) {
 
 var count=null;
 var thisisnum=false;
-var em = $("#stack").find("div");　　//NonjqueryObject
+var em;　//NonjqueryObject
 
 function anim() {
     $(function () {
 
-
-    if(count===null){
+        em= $('#stack').find('div');
+        if(count===null){
         $("#out_stack").html(input);//first disp
         count=0;
     }else if(thisisnum===false) {
