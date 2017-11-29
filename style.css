@@ -1,39 +1,68 @@
 @media screen and (min-width:0px){
     /*基本　スマホ用*/
     body {
-        background-color: #c8f9ca;
+
+        /*background-image: url("kaomoji.png");*/
 
     }
 
     h1 {
         text-align: center;
+        background-color: #fff;
     }
     ul{
         list-style: none;
+        margin:0 0;
+        padding:0 0;
     }
     #caution{
+        text-align: left;
         font-size: 0.5em;
+        background: #dff9df;
+        border: groove #666666;
+        margin-bottom: 10px;
+    }
+    #example{
+        text-align: left;
+        font-size: 0.5em;
+        background: #dff9df;
+        border: groove #666666;
+    }
+    #popB{
+    font-size: 1.0em;
+        -webkit-appearance: none;
+    }
+    #pop{
+        background-color: #fac8f1;
+        border-radius: 100%;
+        font-size: 0.8em;
+        font-family: "ヒラギノ丸ゴ Pro W4", cursive;
+        cursor: pointer;
     }
     #wrap {
-        font-size: 2.2em;
+        font-size: 2.3em;
+    }
+    #buttom{
     }
     #out_stack{
     margin-top:25px;
+        font-size: 0.5em;
+
     }
     #stack{
         /*margin: 20px;*/
     }
 
     #in > input {
-        font-size: 1em;
+        font-size: 0.8em;
         text-align: center;
     }
 
-    button{
+    #button{
         border-radius: 100%;
         width: 200px;
         height: 45px;
-        font-size: 1em;
+        font-size: 0.8em;
         background-color: lime;
     }
 
@@ -41,6 +70,7 @@
         width: 300px;
         margin:0 25px 0;
         background-color:#fff;
+        font-size: 0.6em;
     }
 
     #stack > div {

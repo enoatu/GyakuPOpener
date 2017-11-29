@@ -17,16 +17,27 @@
 
 <div align="center" id="wrap">
 
-    <div id="in">
-        <div id="caution">
-            <ul>
-            <li>半角で入力してください。</li>
-            <li>半角スペースで区切ってください。</li>
-            <li>例) 10 20 30 * + =</li>
-            <li>例)</li>
 
+        <div id="caution">
+            <div align="center" >入力方法</div>
+            <ul>
+            <li>半角数字,半角の+ - * / = r(平方根)</li>
+            <li>半角スペースで区切ってください。</li>
             </ul>
-            </div>
+        </div>
+        <div id="example">
+            <ul>
+            <li>例)1 2 + 3 4 - * 5 6 + / =</li>
+                <li>逆ポーランド電卓で<a href="http://www.rpn.jp/basic/basicpol.html"
+                                target="_blank">有名らしい式</a>
+                    を<button id="popB" onclick="popular()">解く</button>
+                    <a id="pop" href="http://www.rpn.jp/basic/basicrpn.html"
+                     target="_blank">答え</a>
+                </li>
+            </ul>
+        </div>
+    <div id="buttom">
+    <div id="in">
     <input type="text" id="input" autofocus placeholder="例) 10 20 30 * + =">
     </div>
     <button id="button">Open</button>
@@ -37,7 +48,7 @@
 
         </div>
     </div>
-
+    </div>
 </div>
 </body>
 </html>

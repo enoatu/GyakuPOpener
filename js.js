@@ -15,7 +15,7 @@ $("#button").on('click',
         }
         for (var m=0;m<out_arr.length;m++){
             if(!isNaN(out_arr[m])){
-            out_arr[m]=parseInt(out_arr[m]);}
+            out_arr[m]=parseFloat(out_arr[m]);}
         }
 
       setTimeout(function () {
@@ -98,11 +98,20 @@ function text() {console.log("calc");
             caseDetail();
 
             break;
+        case "r":
+            $(stack[pointer]).html(
+                Math.sqrt(stack_arr[stack_arr.length-1]));
+
+            stack_arr.pop();
+
+            break;
         case "=":
             finishFlag=true;
             clearInterval(sI);
 
             break;
+
+
         default:
             $("#out_stack").html("エラーです");
             clearInterval(sI);
@@ -178,4 +187,7 @@ function reset() {
 
 }
 
+function popular() {
+    $('#input').val("8.33 4 5.2 - * 8.33 7.46 - 0.32 * / 4.3 3.15 2.75 - * 1.71 2.01 * - / r =");
+}
 
