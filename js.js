@@ -1,13 +1,14 @@
-var input;
-var out_arr;
+var input=null;
+var out_arr=[];
 var stack_arr=[];
-var divp=0;
-var sI;
-
+var sI=null;
+var p_count=0;
 $("#button").on('click',
     function () {
+    reset();
+        $("#button").prop("disabled", true);
         input = $("#input").val();
-        input="10 200 30 * + =";
+        // input="10 200 30 * + =";
         out_arr= input.split(" ");
         for(var i=0;i<searchNumNum(out_arr);i++){
         $('#stack').append("<div><br></div>");
@@ -18,17 +19,16 @@ $("#button").on('click',
         }
 
       setTimeout(function () {
-          sI = setInterval(anim, 2000);
-      },2000);
+          sI = setInterval(anim, 1300);
+      },500);
 
     }
     );
 
 var in_num=0;
 var is_first=null;
-var count=null;
 var thisisnum=false;
-var stack;　//NonjqueryObject
+var stack=null;　//NonjqueryObject
 
 function anim() {
 
@@ -40,6 +40,7 @@ function anim() {
     }else {
         text();
     }
+    console.log("pointer:"+pointer);
 
 }
 
@@ -53,56 +54,53 @@ function first() { console.log("first");
 }
 
 var pointer = 0;
-
+var finishFlag=false;
 function num() {  console.log("num");
 
 arr_FirstElement_Move();
     
     in_num++;
+    p_count=0;
     //all move
     outstack();
 
     for(var j=0;j<stack_arr.length;j++) {
-        $(stack[stack_arr.length-j-1]).html(stack_arr[j]);
+        $(stack[stack_arr.length-j-1+pointer]).html(stack_arr[j]);
     }
     
     // thisisnum=false;
-    divp++;
-    pointer++;
 }
 
-
-function text() {console.log("text");
-
-    switch (out_arr[0]) {//pre know
+function text() {console.log("calc");
+    // if(p_flag===1){p_flag=0;pointer++;}
+    switch (out_arr[0]) {//pre know　&not shift push
         case "+":
-            stack_arr[stack_arr.length-1]+=
-                stack_arr[stack_arr.length-2];
-
-            $(stack[1]).html(
-                    stack_arr[stack_arr .length-1]);
+            stack_arr[stack_arr.length-2]+=
+                stack_arr[stack_arr.length-1];
+                caseDetail();
 
             break;
         case "-":
-            stack_arr[stack_arr.length-1]-=
-                stack_arr[stack_arr.length-2];
+            stack_arr[stack_arr.length-2]-=
+                stack_arr[stack_arr.length-1];
+            caseDetail();
+
             break;
         case "*":
-            stack_arr[stack_arr.length-1]*=
-                stack_arr[stack_arr.length-2];
-    console.log();
-            for(var j=stack_arr.length;j>0;j--) {
-                $(stack[stack_arr.length-j-1]).html(stack_arr[j]);
-            }
+            stack_arr[stack_arr.length-2]*=
+                stack_arr[stack_arr.length-1];
+            caseDetail();
 
-            $(stack[1]).html(
-                stack_arr[stack_arr .length-1]);
             break;
         case "/":
-            stack_arr[stack_arr.length-1]/=
-                stack_arr[stack_arr.length-2];
+            stack_arr[stack_arr.length-2]/=
+                stack_arr[stack_arr.length-1];
+            caseDetail();
+
             break;
         case "=":
+            finishFlag=true;
+            clearInterval(sI);
 
             break;
         default:
@@ -111,91 +109,72 @@ function text() {console.log("text");
             break;
 
     }
-    out_arr.shift();
-    count++;
+    arr_Element_Delete();
+    outstack();
+    if(finishFlag===true) {
+        $("#out_stack").html("計算終了");
+        $("#button").prop("disabled", false);
 
+    }
 }
 
-function outstack() {
+function caseDetail() {
+    $(stack[pointer+1]).html(
+        stack_arr[stack_arr.length-2]);
+    $(stack[pointer]).html("<div><br></div>");
+
+    // if(p_count===0){
+    // pointer++;
+    //     p_count=1;
+    // }
+    pointer++;
+    stack_arr.pop();
+}
+
+function outstack() {//output outstack
     $("#out_stack").html(out_arr.join(' '));
     console.log("stack_arr : "+stack_arr);
     console.log("out_arr : "+out_arr);
 
 }
 
-function arr_FirstElement_Move() {
+function arr_FirstElement_Move() {//push shift
     stack_arr.push(out_arr[0]);
     out_arr.shift();
 }
 
+function arr_Element_Delete() {//shift only
 
-    function searchNumNum(arr) {
+    out_arr.shift();
+}
+
+
+function searchNumNum(arr) { //search the number of numbers
         var numcount=0;
 
         for(var i=0;i<arr.length;i++) {
-            if(isNaN(arr[i])) {
+            if(!isNaN(arr[i])) {
                 numcount++;
             }
         }
 
         return numcount
-    }
+}
 
+function reset() {
+    $('#stack').html("");
+    $('#out_stack').html("<br>");
 
-function c() {
-
-
-
-    $(stack[divp]).html(out_arr[divp]);//output in stack
-
-    stack_arr.shift();
-    $("#out_stack").html(stack_arr.join(' '));
-    //output in stackout
-    console.log(out_arr);
-    console.log (stack_arr);
-
-
-    for (var i=0;i<out_arr.length;i++) {
-        $("#stack").find('div')[i].html(out_arr[i]);
-
-    }
-    var input = $("#input").val();
-
-//10 20 30 *+=
-
-//{10 20 30 *+=}
-    var stack = [];
-    for (var i = 0; i < out_arr.length; i++) {
-        switch (out_arr[i]) {
-            case "+":
-                break;
-            case "-":
-                break;
-            case "*":
-                break;
-            case "/":
-                break;
-            default:
-                se(out_arr[i], i);
-                break;
-            anima();
-
-        }
-
-    }
-
-    function se(input, i) {
-        if (typeof(parseInt(input)) === 'number') {
-
-            $('input[name="[i]"]').innerHTML = i;
-        }
-
-        if (typeof(input) === 'string') {
-
-            $('input[name="[i]"]').innerHTML = i;
-        }
-    }
-
+    input=null;
+    out_arr=[];
+     stack_arr=[];
+     sI=null;
+     in_num=0;
+     is_first=null;
+    thisisnum=false;
+    stack=null;
+    pointer = 0;
+     finishFlag=false;
 
 }
 
