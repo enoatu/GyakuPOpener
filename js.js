@@ -74,17 +74,13 @@ arr_FirstElement_Move();
 
 function text() {console.log("text");
 
-
-
     switch (out_arr[0]) {//pre know
         case "+":
-
             stack_arr[stack_arr.length-1]+=
                 stack_arr[stack_arr.length-2];
 
             $(stack[1]).html(
                     stack_arr[stack_arr .length-1]);
-
 
             break;
         case "-":
@@ -92,22 +88,19 @@ function text() {console.log("text");
                 stack_arr[stack_arr.length-2];
             break;
         case "*":
-
             stack_arr[stack_arr.length-1]*=
                 stack_arr[stack_arr.length-2];
-console.log()
+    console.log();
+            for(var j=stack_arr.length;j>0;j--) {
+                $(stack[stack_arr.length-j-1]).html(stack_arr[j]);
+            }
+
             $(stack[1]).html(
                 stack_arr[stack_arr .length-1]);
-
-            $(stack[0]).html(
-                stack_arr[stack_arr .length-1]);
-
-
             break;
         case "/":
             stack_arr[stack_arr.length-1]/=
                 stack_arr[stack_arr.length-2];
-
             break;
         case "=":
 
