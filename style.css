@@ -42,6 +42,11 @@
     #wrap {
         font-size: 2.3em;
     }
+    #im{
+        width: 200px;
+        height: 45px;
+    }
+    
     #buttom{
     }
     #out_stack{
@@ -56,6 +61,8 @@
     #in > input {
         font-size: 0.8em;
         text-align: center;
+        width:100%;
+
     }
 
     #button{
@@ -95,10 +102,22 @@
     }
     #in > input{
         font-size: 1em;
+        width:70%;
+
     }
     #button{
         width: 300px;
         height: 80px;
         font-size: 1em;
     }
+    #caution{
+        width:50%;
+
+    }
+
+    #example{
+        width:50%;
+
+    }
+
 }
