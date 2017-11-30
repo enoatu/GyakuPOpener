@@ -3,13 +3,17 @@ var out_arr=[];
 var stack_arr=[];
 var sI=null;
 var p_count=0;
-$("#button").on('click',
+var buttonLock=false;
+$("#b_im").on('click',
     function () {
+    if(buttonLock===true){//button lock
+       return;//if button locked
+    }buttonLock=true;
+    console.log("click!");
     reset();
-         $("#button").prop("disabled", true);
+
         $("#b_im").html("<img id='im' src='./left.png'>");
         input = $("#input").val();
-        // input="10 200 30 * + =";
         out_arr= input.split(" ");
        var sN = searchNumNum(out_arr);
         for(var i=0;i<sN;i++){
@@ -33,10 +37,10 @@ var image=0;
 function anim() {
 
     if (image === 0){
-        $("#b_im").html("<img id='im' src='./right.png'>");
+        $("#b_im").html("<img id='im' src='./right.png'>"+"<span id='sore'>それ</span>");
         image=1;
     }else{
-        $("#b_im").html("<img id='im' src='./left.png'>");
+        $("#b_im").html("<span id='sore'>それ</span>"+"<img id='im' src='./left.png'>");
         image=0;
     }
 
@@ -48,7 +52,7 @@ function anim() {
     }else if(out_arr[0]!==null) {
         text();
     }else {
-        console.log("err");error();
+        console.log("err");error("anim");
     }
     console.log("pointer:"+pointer);
 
@@ -62,7 +66,8 @@ function first() { console.log("first");
     if(!isNaN(out_arr[0])) {
     thisisnum=true;
     }else {
-        console.log("err");error();
+        console.log("err");
+        error("first");
     }
 
 }
@@ -136,6 +141,7 @@ function text() {console.log("calc");
         $("#out_stack").html("計算終了");
         $("#button").prop("disabled", false);
         $("#b_im").html("<button id='button'>Open</button>");
+        buttonLock=false;
 
 
     }
@@ -181,12 +187,13 @@ function searchNumNum(arr) { //search the number of numbers
             }
         }
         if(numcount===0){
-            error();
+            error("searchNumNum");
         }
         return numcount
 }
 
 function reset() {
+    console.log("did reset");
     $('#stack').html("");
     $('#out_stack').html("<br>");
 
@@ -207,11 +214,13 @@ function popular() {
     $('#input').val("8.33 4 5.2 - * 8.33 7.46 - 0.32 * / 4.3 3.15 2.75 - * 1.71 2.01 * - / r =");
 }
 
-function error() {
+function error(str) {
     clearInterval(sI);
-    $("#out_stack").html("半角数字がnot foundです");
+    $(function () {
 
-    $("#button").prop("disabled", false);
+    $("#out_stack").html(str+" 半角数字がnot foundです");
     $("#b_im").html("<button id='button'>Open</button>");
+    buttonLock=false;
+    });
 
 }

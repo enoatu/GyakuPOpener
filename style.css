@@ -2,8 +2,6 @@
     /*基本　スマホ用*/
     body {
 
-        /*background-image: url("kaomoji.png");*/
-
     }
 
     h1 {
@@ -27,6 +25,9 @@
         font-size: 0.5em;
         background: #dff9df;
         border: groove #666666;
+    }
+    #sore{
+        font-size: 0.7em;
     }
     #popB{
     font-size: 1.0em;
