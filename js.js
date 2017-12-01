@@ -138,7 +138,7 @@ function text() {console.log("calc");
     arr_Element_Delete();
     outstack();
     if(finishFlag===true) {
-        $("#out_stack").html("計算終了");
+        $("#out_stack").html("<span id='sore'>計算終了</span>"+"<img id='im' src='./finish.png'>");
         $("#button").prop("disabled", false);
         $("#b_im").html("<button id='button'>Open</button>");
         buttonLock=false;
